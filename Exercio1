@@ -4,6 +4,7 @@ import java.util.Locale;
 
 public class Fixacao1 {
 
+// Exercício praticando texto
 
 	public static void main(String[] args) {
 		
