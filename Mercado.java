@@ -8,16 +8,22 @@ public class Mercado {
 
 	public static void main(String[] args) {
 
+		Locale.setDefault(Locale.US);
+		
 		sc = new Scanner(System.in);
 		
+		List<Produtos>listaProduto = new ArrayList<>();
+		
 		int opcao;
+		
 		
 		do {
 		System.out.print("|---------------------Menu---------------------|\n");
 		System.out.print("|----------------------------------------------|\n");
-		System.out.print("| Opção 1 - Verificar produtos 				         |\n");
-		System.out.print("| Opção 2 - Cadastar novo produto				       |\n");
-		System.out.print("| Opção 0 - Sair				 				               |\n");
+		System.out.print("| Opção 1 - Verificar produtos 		 |\n");
+		System.out.print("| Opção 2 - Cadastar novo produto		 |\n");
+		System.out.print("| Opção 3 - Pesquisar produto			 |\n");
+		System.out.print("| Opção 0 - Sair				 |\n");
 		System.out.print("|----------------------------------------------|\n");
 		System.out.print("\nDigite uma opção: ");
 		
@@ -25,11 +31,36 @@ public class Mercado {
 		
 		if(opcao == 1) {
 			System.out.print("\nOPÇÃO SELECIONADA: 1 - Verificar produtos \n");
-			Produtos.itens();
+			listaProduto.addAll(listaItem());
+				for(Produtos p : listaProduto) { //percoore cada item cadastrado na lista e armazena no p do tipo produto
+				System.out.println("\nProduto: " + p.nomeProd);
+				System.out.println("Valor: " + p.precoProd);
+			}
 		}else if (opcao == 2) {
 			System.out.print("\nOPÇÃO SELECIONADA: 2 - Cadastrar novo produto \n");
-			List<Produtos> listaProduto = new ArrayList<>();
-			listaProduto.add(cadastrarNovoProd());			
+			listaProduto.add(cadastrarNovoProd());
+		}else if (opcao == 3) {
+			System.out.print("\nOPÇÃO SELECIONADA: 3 - Pesquisar produto \n");
+		    System.out.print("Digite o nome do produto a ser pesquisado: ");
+		    String pesquisar = sc.next();
+
+		    boolean buscaProd = false;
+		    
+		    if(!buscaProd) {
+		    	for(Produtos p : listaItem()) { //verificia se o produto não foi encontrado na listaitem()
+		    		if(p.nomeProd.equalsIgnoreCase(pesquisar)) { //compara o nome do produto com o que foi digitado no "pesquisar"
+		    			System.out.println("\nProduto: " + p.nomeProd);
+		    			System.out.println("Valor: " + p.precoProd);
+		    			buscaProd = true; 
+		    			break; //encerra o loop
+		    		}
+		    	}
+		    }
+		    
+		    if(!buscaProd) {
+		    	System.out.println("Produto não encontrado!");
+		    }
+		    
 		}else if (opcao == 0) {
 			System.out.print("\nOPÇÃO SELECIONADA: 0 - Sair \n");
 		}else {
@@ -46,46 +77,107 @@ public class Mercado {
 		
 		sc.close();
 		
-			}
+		}
 	
+
+
+
+/*==================================LISTA DE PRODUTOS==================================*/
+	public static List<Produtos> listaItem() {
+
+		List<Produtos> listaItem = new ArrayList<>();
+		
+		Produtos item1 = new Produtos();
+		item1.nomeProd = "Mouse";
+		item1.precoProd = 94.99;
+		listaItem.add(item1);
+		
+		Produtos item2 = new Produtos();
+		item2.nomeProd = "Notebook I7";
+		item2.precoProd = 7599.99;
+		listaItem.add(item2);
+		
+		Produtos item3 = new Produtos();
+		item3.nomeProd = "Notebook I3";
+		item3.precoProd = 2549.99;
+		listaItem.add(item3);
+		
+		Produtos item4 = new Produtos();
+		item4.nomeProd = "Filtro de 4 linhas";
+		item4.precoProd = 30.00;
+		listaItem.add(item4);
+		
+		Produtos item5 = new Produtos();
+		item5.nomeProd = "Conector RJ45 Ethernet";
+		item5.precoProd = 3.49;
+		listaItem.add(item5);
+		
+		Produtos item6 = new Produtos();
+		item6.nomeProd = "Cabo HDMI";
+		item6.precoProd = 20.00;
+		listaItem.add(item6);
+		
+		return listaItem;
+	}
+
+	
+
+/*==================================CADASTRAR PRODUTOS==================================*/
 	public static Produtos cadastrarNovoProd() {
 		
 		Produtos prodMercado = new Produtos();
 		
-		System.out.print("Digite o nome do produto: 4) ");
+		//Produtos
+		System.out.print("Digite o nome do produto: ");
 		prodMercado.nomeProd = sc.next();
 		
+		//Valor
 		System.out.print("Valor do produto: ");
 		prodMercado.precoProd = sc.nextDouble();
 		
 		System.out.print("\nProduto cadastrado\n");
 		
+		
 		return prodMercado;
 	}
 }
 
+
+
+
+
+
+
 /* ---------------------- OUTRA CLASSE ----------------------
-package Prod;
 
-public class Produtos {
-
-	public String nomeProd;
+	String nomeProd;
 	
-	public double precoProd;
+	double precoProd;
 	
-	public double qtdProd;
+	double qtdProd;
 	
-	public double total() {
+	/*public double total() {
 		return precoProd * qtdProd;
+	}*/
+	
+	public Produtos() {
+		
 	}
 
-	public static void itens() {
-		System.out.print("|----------------------------------------------|\n");
-		System.out.print("| 1) Ssd 254gb 	| R$: 150.00 				           |\n");
-		System.out.print("| 2) Notebook i3 	| R$: 3550.00				         |\n");
-		System.out.print("| 3) Mouse 		| R$: 110.00 				             |\n");
-		System.out.print("|----------------------------------------------|\n");
+	public Produtos(String nomeProd, double precoProd) {
+		this.nomeProd = nomeProd;
+		this.precoProd = precoProd;
 	}
+
+	public String getNomeProd() {
+		return nomeProd;
+	}
+	
+	public double getPrecoProd() {
+		return precoProd;
+	}
+	
+
 }
 
 */
