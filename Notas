@@ -1,1 +1,38 @@
+package javaapplication1;
+
+import java.util.*;
+
+public class Notas {
+    
+    //Entada: atributos / variaveis
+    //Processo: métodos / lógica de programação
+    //Saída: Métodos ou exibição dos resultados
+    
+    public static void main(String[] args){ 
+        
+    Scanner nt = new Scanner(System.in);
+    
+    double a1, a2;
+    double media;
+    String resultado;
+    
+    System.out.println("Digite sua nota da A1: ");
+    a1 = nt.nextDouble();
+    
+    System.out.println("Digite sua nota da A2: ");
+    a2 = nt.nextDouble();
+    
+    media = a1 + a2; //calculo da média
+
+    
+    if(media < 6){
+        resultado = "Exame";
+    } else 
+        resultado = "Aprovado";
+    
+    System.out.println("Sua média é: " + media);
+    System.out.println("Sua situação é: " + resultado);
+    
+}
+    }
 
