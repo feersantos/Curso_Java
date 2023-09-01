@@ -1,0 +1,65 @@
+
+package javaapplication1;
+
+/**
+ *
+ * @author 00293125
+ */
+import java.util.*;
+
+public class NotaFacul {
+    
+    //Entada: atributos / variaveis
+    //Processo: métodos / lógica de programação
+    //Saída: Métodos ou exibição dos resultados
+    
+    public static void main(String[] args){ 
+        
+    float a1, a2;
+    
+    a1 = 3.0f;
+    a2 = 2.5f;
+    
+    Aluno aluno; //chamando o metodo
+    aluno = new Aluno();
+    
+    System.out.println("Média = " + aluno.media());
+    System.out.println("Resultado = " + aluno.resultado());
+
+    
+    
+    
+}
+    }
+
+
+
+/* METODO
+
+package javaapplication1;
+
+
+public class Aluno {
+    
+    float a1, a2;
+    
+    //valores iniciais
+    {
+        a1 = a2 = 0.0f;
+    }
+    
+    //processo
+    float media(){
+        return a1 + a2;
+    }
+    
+    String resultado(){
+        if(media() < 6){
+          return "Exame";
+    } else 
+          return "Aprovado";
+    }
+       
+}
+
+*/
